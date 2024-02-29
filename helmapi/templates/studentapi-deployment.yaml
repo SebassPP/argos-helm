@@ -16,7 +16,7 @@ spec:
         app: studentapi
     spec:
       containers:
-      - image: sebaspp/studentapi:2.1.19
+      - image: sebasspp/studentapi:2.1.19
         name: studentapi
         ports:
         - containerPort: 8080
