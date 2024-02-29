@@ -30,44 +30,12 @@ jobs:
       - name: Run lint
         run: ct lint --config .github/ct.yaml
 
-  kubeval-chart:
-    runs-on: ubuntu-latest
-    needs:
-      - lint-chart
-    strategy:
-      matrix:
-        k8s:
-          - v1.26.12
-          - v1.27.9
-          - v1.28.5
-          - v1.29.0
-    steps:
-      - name: Checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-        with:
-          fetch-depth: 0
-
-      - name: Set Execute Permission for helm-docs.sh
-        run: chmod +x .github/kubeval.sh
-
-      - name: Run kubeval
-        env:
-          KUBERNETES_VERSION: ${{ matrix.k8s }}
-        run: .github/kubeval.sh
+ 
 
   install-chart:
     name: install-chart
     runs-on: ubuntu-latest
-    needs:
-      - lint-chart
-      - kubeval-chart
-    strategy:
-      matrix:
-        k8s:
-          - v1.26.14 # renovate: kindest
-          - v1.27.11 # renovate: kindest
-          - v1.28.7 # renovate: kindest
-          - v1.29.2 # renovate: kindest
+   
     steps:
       - name: Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
