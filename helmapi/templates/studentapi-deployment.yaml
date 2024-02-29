@@ -18,6 +18,7 @@ spec:
       containers:
       - image: sebasspp/studentapi:2.1.19
         name: studentapi
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
         env: 
