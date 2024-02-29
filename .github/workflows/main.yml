@@ -24,4 +24,4 @@ jobs:
           sudo apt-get update
           sudo apt-get install helm
           helm install aplication ./helmapi --values ./helmapi/values.yaml
-          helm install aplication ./helmbd --values ./helmbd/values.yaml
+          helm install database ./helmbd --values ./helmbd/values.yaml
