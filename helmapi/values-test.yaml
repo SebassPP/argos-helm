@@ -11,7 +11,6 @@ requestsmemory: "100Mi"
 limitscpu: "200m"
 limitsmemory: "200Mi"
 
-
 autoscalingmin: 1
 autoscalingmax: 3
 
