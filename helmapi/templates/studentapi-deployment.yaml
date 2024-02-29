@@ -16,19 +16,19 @@ spec:
         app: studentapi
     spec:
       containers:
-      - image: sebaspp/studentapi:2.1.19
+      - image: sebaspp/studentapi:{{.Values.env.APP_VERSION }}
         name: studentapi
         ports:
         - containerPort: 8080
         env: 
         - name: DB_HOST
-          value: {{.Values.bdhost }}
+          value: mysql
         - name: DB_NAME
-          value: {{.Values.dbname }}
+          value: student
         - name: DB_PASSWORD
-          value: {{.Values.dbpassword }}
+          value: root
         - name: DB_USERNAME
-          value: {{.Values.dbusername }}
+          value: root
         startupProbe:
           httpGet:
             path: /student/health
@@ -46,8 +46,8 @@ spec:
           failureThreshold: 5
         resources: 
           requests:
-            cpu: {{.Values.requestscpu}}
-            memory: {{.Values.requestsmemory}}
+            cpu: "100m"
+            memory: "100Mi"
           limits:
-            cpu: {{.Values.limitscpu}}
-            memory: {{.Values.limitsmemory}}
+            cpu: "200m"
+            memory: "200Mi"

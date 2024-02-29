@@ -1,18 +1,4 @@
-replicaCount: 1
-
-bdhost: mysql
-dbname: student
-dbpassword: root
-dbusername: root
-
-requestscpu: "100m"
-requestsmemory: "100Mi"
-
-limitscpu: "200m"
-limitsmemory: "200Mi"
-
-autoscalingmin: 1
-autoscalingmax: 3
-
+env:
+  APP_VERSION: 2.1.19
 
 
