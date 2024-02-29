@@ -13,12 +13,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Kubectl
-        uses: azure/setup-kubectl@v1
-        with:
-          version: 'latest'
-
       - name: Helm Install
         run: |
+          minikube start
           helm install aplication ./helmapi --values ./helmapi/values.yaml
           helm install aplication ./helmbd --values ./helmbd/values.yaml
