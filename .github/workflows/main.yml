@@ -1,25 +1,24 @@
-name: CI Helm Chart
+name: Deploy to Kubernetes
 
 on:
-  push
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Setup Helm
-      uses: actions/setup-helm@v1
-      with:
-        version: v3.8.0
+      - name: Set up Kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
 
-    - name: Lint Chart
-      run: helm lint .
-
-    - name: Deploy Chart to Minikube
-      run: 
-        minikube start
-        helm install ./helmapi
-        helm install ./helmbd
+      - name: Helm Install
+        run: |
+          helm install aplication . --value ./helmapi/values.yaml
+          helm install aplication . --value ./helmbd/values.yaml
