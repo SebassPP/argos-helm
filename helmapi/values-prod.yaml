@@ -1,0 +1,18 @@
+replicaCount: 1
+
+bdhost: mysql
+dbname: student-prod
+dbpassword: root
+dbusername: root
+
+requestscpu: "800m"
+requestsmemory: "800Mi"
+
+limitscpu: "1200m"
+limitsmemory: "1200Mi"
+
+autoscalingmin: 1
+autoscalingmax: 3
+
+
+
