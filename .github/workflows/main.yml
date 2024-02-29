@@ -1,0 +1,25 @@
+name: CI Helm Chart
+
+on:
+  push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Helm
+      uses: actions/setup-helm@v1
+      with:
+        version: v3.8.0
+
+    - name: Lint Chart
+      run: helm lint .
+
+    - name: Deploy Chart to Minikube
+      run: 
+        minikube start
+        helm install ./helmapi
+        helm install ./helmbd
