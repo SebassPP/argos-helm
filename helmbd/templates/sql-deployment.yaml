@@ -18,9 +18,9 @@ spec:
         name: mysql
         env:
           - name: MYSQL_ROOT_PASSWORD
-            value: root
+            value: {{ .Values.env.password }}
           - name: MYSQL_DATABASE
-            value: student
+            value: {{ .Values.env.database }}
         ports:
         - containerPort: 3306
           name: mysql
