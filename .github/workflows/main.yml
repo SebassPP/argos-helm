@@ -20,5 +20,5 @@ jobs:
 
       - name: Helm Install
         run: |
-          helm install aplication . --values ./helmapi/values.yaml
-          helm install aplication . --values ./helmbd/values.yaml
+          helm install aplication ./helmapi --values ./helmapi/values.yaml
+          helm install aplication ./helmbd --values ./helmbd/values.yaml
