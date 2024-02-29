@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+Kind: Kustomization
+resources:
+- studentapi-autosacaler.yaml
+- studentapi-deployment.yaml
+- studentapi-ingress.yaml
+- studentapi-service.yaml

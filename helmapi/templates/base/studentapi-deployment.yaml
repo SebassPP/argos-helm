@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: studentapi
+  name: studentapi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: studentapi
+  template:
+    metadata:
+      labels:
+        app: studentapi
+    spec:
+      containers:
+      - image: sebaspp/studentapi:2.1.19
+        name: studentapi
+        ports:
+        - containerPort: 8080
+        env: 
+        - name: DB_HOST
+          value: {{.Values.bdhost }}
+        - name: DB_NAME
+          value: {{.Values.dbname }}
+        - name: DB_PASSWORD
+          value: {{.Values.dbpassword }}
+        - name: DB_USERNAME
+          value: {{.Values.dbusername }}
+        startupProbe:
+          httpGet:
+            path: /student/health
+            port: 8080
+          failureThreshold: 30
+          periodSeconds: 50
+        livenessProbe:
+          httpGet:
+            path: /student/health
+            port: 8080
+          initialDelaySeconds: 3
+          timeoutSeconds: 3
+          periodSeconds: 50
+          successThreshold: 1
+          failureThreshold: 5
+        resources: 
+          requests:
+            cpu: {{.Values.requestscpu}}
+            memory: {{.Values.requestsmemory}}
+          limits:
+            cpu: {{.Values.limitscpu}}
+            memory: {{.Values.limitsmemory}}

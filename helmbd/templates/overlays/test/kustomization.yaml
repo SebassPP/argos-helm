@@ -1,0 +1,6 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+Kind: Kustomization
+#aqui todo lo que se puede
+namespace: test
+resources:
+- ../../base
